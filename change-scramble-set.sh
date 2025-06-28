@@ -5,4 +5,12 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
-cp "./scrambles/$1" ./scrambles/currently-active.pdf
+SCRAMBLE_SET_TO_CHANGE=$1
+
+echo -n "Do you want to display $SCRAMBLE_SET_TO_CHANGE? [y/N] " 
+read answer
+
+case $answer in 
+  y|Y) cp "./scrambles/$SCRAMBLE_SET_TO_CHANGE" ./scrambles/currently-active.pdf ;;
+  *) echo "Nothing was done" ;;
+esac
