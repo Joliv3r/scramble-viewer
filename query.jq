@@ -2,7 +2,7 @@
 {
   # venueName: .name,
   sortedEvents: (
-    [.rooms[].activities[]] 
+    [.rooms[].activities[] | select(.activityCode | contains("other") | not)]
     | sort_by(.startTime)
     | map(.name)
   )
