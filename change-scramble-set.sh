@@ -12,7 +12,7 @@ SSH_PATH=$(cat ./.ssh_path)
 PATH_TO_REPLACE="./scrambles/currently-active.pdf"
 REPLACE_METHOD="cp"
 LOG_FILE="./log"
-LSS_FILE="./currently-active"
+LSS_FILE="./last-scramble-set"
 
 log-change() {
   echo "$(date +"%H:%M:%S"): $SCRAMBLE_SET_TO_CHANGE" >> $LOG_FILE
