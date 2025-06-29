@@ -1,6 +1,7 @@
 LSS_FILE="./last-scramble-set"
 SCHEDULE="./schedule"
 SCRAMBLE_DIR="./scrambles/"
+FIRST_FILE_ENDING=" Scramble Set A.pdf"
 
 if [ ! -f $SCHEDULE ]; then
   echo "Need a schedule file to give next scramble set.\nConsider running ./sort-events.sh <competition-id>"
@@ -9,7 +10,7 @@ fi
 
 # If last-scramble-set does not exist we start with the first scramble set.
 if [ ! -f $LSS_FILE ]; then
-  NEXT_SCRAMBLE_SET="$(head -n 1 $SCHEDULE) Scramble Set A.pdf"
+  NEXT_SCRAMBLE_SET="$(head -n 1 $SCHEDULE) $FIRST_FILE_ENDING"
   bash ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
   exit 0
 fi
@@ -26,7 +27,7 @@ if [ -f "$SCRAMBLE_DIR$NEXT_SCRAMBLE_SET" ]; then
 fi
 
 PREVIOUS_ROUND=${LAST_SCRAMBLE_SET:0:$((${#LAST_SCRAMBLE_SET}-19))}
-NEXT_SCRAMBLE_SET="$(grep -A1 "$PREVIOUS_ROUND" $SCHEDULE | tail -n 1) Scramble Set A.pdf"
+NEXT_SCRAMBLE_SET="$(grep -A1 "$PREVIOUS_ROUND" $SCHEDULE | tail -n 1) $FIRST_FILE_ENDING"
 
 if [ -f "$SCRAMBLE_DIR$NEXT_SCRAMBLE_SET" ]; then
   bash ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
