@@ -11,7 +11,7 @@ fi
 if [ ! -f $LSS_FILE ]; then
   NEXT_SCRAMBLE_SET="$(head -n 1 $SCHEDULE) Scramble Set A.pdf"
   echo $NEXT_SCRAMBLE_SET > $LSS_FILE
-  ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
+  bash ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
   exit 0
 fi
 
@@ -23,7 +23,7 @@ NEXT_SCRAMBLE_SET="${LAST_SCRAMBLE_SET:0:INDEX}$(echo $SET | tr 'A-Y' 'B-Z')${LA
 
 if [ -f "$SCRAMBLE_DIR$NEXT_SCRAMBLE_SET" ]; then
   echo $NEXT_SCRAMBLE_SET > $LSS_FILE
-  ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
+  bash ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
   exit 0
 fi
 
@@ -32,7 +32,7 @@ NEXT_SCRAMBLE_SET="$(grep -A1 "$PREVIOUS_ROUND" $SCHEDULE | tail -n 1) Scramble 
 
 if [ -f "$SCRAMBLE_DIR$NEXT_SCRAMBLE_SET" ]; then
   echo $NEXT_SCRAMBLE_SET > $LSS_FILE
-  ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
+  bash ./change-scramble-set.sh "$NEXT_SCRAMBLE_SET"
   exit 0
 fi
 

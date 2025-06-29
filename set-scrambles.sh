@@ -21,4 +21,4 @@ esac
 
 FILENAME="$EVENT Round $2 Scramble Set $3.pdf"
 
-./change-scramble-set.sh "$FILENAME"
+bash ./change-scramble-set.sh "$FILENAME"
