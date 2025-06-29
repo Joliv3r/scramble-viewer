@@ -20,5 +20,7 @@ case "$1" in
 esac
 
 FILENAME="$EVENT Round $2 Scramble Set $3.pdf"
+LAST_SCRAMBLE_PATH="./last-scramble-set"
 
+echo $FILENAME > $LAST_SCRAMBLE_PATH
 bash ./change-scramble-set.sh "$FILENAME"
