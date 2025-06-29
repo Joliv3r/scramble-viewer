@@ -7,6 +7,7 @@ Usage: display-scrambles [OPTION]
 Changes scrambles at another scrambler PC.
 
 Options:
+  current                     shows currently active pdf
   help                        shows this text
   init <competition-id>       initializes program to work with the competition
   next                        changes to the next scramble set
@@ -35,6 +36,7 @@ handle_input() {
     "set") bash ./set-scrambles.sh $2 $3 $4 ;;
     "wait") bash ./change-scramble-set.sh "wait" ;;
     "sort") bash ./sort-events.sh $2 ;;
+    "current") cat $ACTIVE_PATH ;;
     "exit") exit 0 ;;
     *) echo "$1 is not a valid option, type help if you are unsure of what you are doing."
   esac
