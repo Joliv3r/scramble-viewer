@@ -27,6 +27,7 @@ handle_input() {
     "next") bash ./show-next-scramble-set.sh ;;
     "set") bash ./set-scrambles.sh $2 $3 $4 ;;
     "wait") bash ./change-scramble-set.sh "wait" ;;
+    "sort") bash ./sort-events.sh $2 ;;
     "exit") exit 0 ;;
     *) echo "$1 is not a valid option, type help if you are unsure of what you are doing."
   esac
