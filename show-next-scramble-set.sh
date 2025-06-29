@@ -1,5 +1,3 @@
-#!/bin/bash
-
 LSS_FILE="./last-scramble-set"
 SCHEDULE="./schedule"
 SCRAMBLE_DIR="./scrambles/"
