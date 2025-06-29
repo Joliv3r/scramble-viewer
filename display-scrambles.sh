@@ -18,12 +18,19 @@ if no option is given you will be taken to an interactive shell where all the co
 "
 
 ACTIVE_PATH="./last-scramble-set"
+LOG_PATH="./log"
 WAIT_PATH="./scrambles/waiting.pdf"
 
 handle_input() {
   case "$1" in
     "help") echo "$HELP" ;;
-    "init") rm -f $ACTIVE_PATH && bash ./change-scramble-set.sh "wait" && bash ./sort-events.sh $2 ;;
+    "init") 
+      echo -n "Are you sure you want to initialize, this will delete the log file. [y/N] "
+      read ANSWER
+      case "$ANSWER" in
+        y|Y) rm -f $ACTIVE_PATH $LOG_PATH && bash ./change-scramble-set.sh "wait" && bash ./sort-events.sh $2 ;;
+        *) echo "Nothing was done."
+      esac ;;
     "next") bash ./show-next-scramble-set.sh ;;
     "set") bash ./set-scrambles.sh $2 $3 $4 ;;
     "wait") bash ./change-scramble-set.sh "wait" ;;
