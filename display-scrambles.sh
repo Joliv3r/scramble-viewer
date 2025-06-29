@@ -7,6 +7,7 @@ Usage: display-scrambles [OPTION]
 Changes scrambles at another scrambler PC.
 
 Options:
+  clean                       removes all generated files
   current                     shows currently active pdf
   help                        shows this text
   init <competition-id>       initializes program to work with the competition
@@ -37,6 +38,13 @@ handle_input() {
     "wait") bash ./change-scramble-set.sh "wait" ;;
     "sort") bash ./sort-events.sh $2 ;;
     "current") cat $ACTIVE_PATH ;;
+    "clean")
+      echo -n "Are you sure you want to clean all temporary files, this will delete the log file and the schedule. [y/N] "
+      read ANSWER
+      case "$ANSWER" in
+        y|Y) rm -f $ACTIVE_PATH $LOG_PATH *-json ;;
+        *) echo "Nothing was done."
+      esac ;;
     "exit") exit 0 ;;
     *) echo "$1 is not a valid option, type help if you are unsure of what you are doing."
   esac
