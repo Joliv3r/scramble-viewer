@@ -12,6 +12,7 @@ SSH_PATH=$(cat ./.ssh_path)
 PATH_TO_REPLACE="./scrambles/currently-active.pdf"
 REPLACE_METHOD="cp"
 LOG_FILE="./log"
+LSS_FILE="./currently-active"
 
 log-change() {
   echo "$(date +"%H:%M:%S"): $SCRAMBLE_SET_TO_CHANGE" >> $LOG_FILE
@@ -34,6 +35,7 @@ read answer
 case $answer in 
   y|Y) 
     log-change
+    echo $SCRAMBLE_SET_TO_CHANGE > $LSS_FILE
     $REPLACE_METHOD "$SCRAMBLE_DIR$SCRAMBLE_SET_TO_CHANGE" $PATH_TO_REPLACE ;;
   *) echo "Nothing was done" ;;
 esac
