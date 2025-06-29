@@ -8,9 +8,9 @@ SCRAMBLE_SET_TO_CHANGE=$1
 WAIT_FILE="waiting.pdf"
 WAIT_PATH="$SCRAMBLE_DIR$WAIT_FILE"
 SSH_PATH=$(cat ./.ssh_path)
-# PATH_TO_REPLACE="$SSH_PATH:~/currently-active.pdf"
-PATH_TO_REPLACE="./scrambles/currently-active.pdf"
-REPLACE_METHOD="cp"
+PATH_TO_REPLACE="$SSH_PATH:~/currently-active.pdf"
+# PATH_TO_REPLACE="./scrambles/currently-active.pdf"
+REPLACE_METHOD="scp"
 LOG_FILE="./log"
 LSS_FILE="./last-scramble-set"
 
