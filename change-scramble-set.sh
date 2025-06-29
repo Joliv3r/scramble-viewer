@@ -7,8 +7,8 @@ SCRAMBLE_DIR="./scrambles/"
 SCRAMBLE_SET_TO_CHANGE=$1
 WAIT_FILE="waiting.pdf"
 WAIT_PATH="$SCRAMBLE_DIR$WAIT_FILE"
-PATH_TO_REPLACE="./scrambles/currently-active.pdf"
-REPLACE_METHOD="cp"
+PATH_TO_REPLACE="$SSH_PATH:~/currently-active.pdf"
+REPLACE_METHOD="scp"
 
 if [ "$SCRAMBLE_SET_TO_CHANGE" = "wait" ]; then
   $REPLACE_METHOD "$WAIT_PATH" $PATH_TO_REPLACE
