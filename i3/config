@@ -1,0 +1,3 @@
+bindsym q exec true
+for_window [all] fullscreen enable
+exec --no-startup-id zathura /home/scrambler/currently-active.pdf
