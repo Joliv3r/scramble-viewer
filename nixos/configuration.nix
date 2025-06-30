@@ -18,7 +18,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Limit the maximum amount of latest generation entries in the boot menu.
-  boot.loader.systemd-boot.configurationLimit = 100;
+  boot.loader.systemd-boot.configurationLimit = 20;
 
   # Why is this not on by default?
   boot.tmp.cleanOnBoot = true;
@@ -28,7 +28,7 @@
   time.timeZone = "Europe/Amsterdam";
 
   # Enable X server
-  # services.displayManager.defaultSession = "none+zathura";
+  services.displayManager.defaultSession = "none+i3";
   services.xserver = {
     enable = true;
     autorun = false;
@@ -36,11 +36,13 @@
       layout = "us";
       options = "ctrl:nocaps";
     };
-    # displayManager.startx = {
-    #   enable = true;
-    #   generateScript = true;
-    # };
+    displayManager.startx = {
+      enable = true;
+      generateScript = true;
+    };
   };
+
+  services.getty.autologinUser = "scrambler";
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput = {
@@ -60,11 +62,16 @@
     isNormalUser = true;
     extraGroups = [ ]
       ++ ( if ( config.networking.networkmanager.enable ) then [ "networkmanager" ] else [ ] );
-
     packages = with pkgs; [
       zathura
+      i3
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+  ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
