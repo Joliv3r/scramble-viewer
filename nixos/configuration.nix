@@ -55,7 +55,13 @@
   };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+    };
+  };
+  services.fail2ban.enable = true;
 
   # Create scrambler user
   users.users.scrambler = {
