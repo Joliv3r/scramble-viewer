@@ -30,7 +30,10 @@ handle_input() {
       echo -n "Are you sure you want to initialize, this will delete the log file. [y/N] "
       read ANSWER
       case "$ANSWER" in
-        y|Y) rm -f $ACTIVE_PATH $LOG_PATH && bash ./change-scramble-set.sh "wait" && bash ./sort-events.sh $2 ;;
+        y|Y) rm -f $ACTIVE_PATH $LOG_PATH \
+          && bash ./change-scramble-set.sh "wait" \
+          && bash ./sort-events.sh $2 \
+          && export COMPETITION_NAME=$(cat trondheimfriends2024-json | jq '.["name"]' | sed -r 's/[^[:alnum:][:space:]]//g') ;;
         *) echo "Nothing was done."
       esac ;;
     "next") bash ./show-next-scramble-set.sh ;;

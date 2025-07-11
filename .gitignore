@@ -3,5 +3,6 @@ schedule
 last-scramble-set
 scrambles/
 .ssh_path
+.envrc
 log
 currently-active.pdf
